@@ -42,17 +42,17 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <a href="index3.html" class="nav-link">الرئيسية</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="#" class="nav-link">التواصل</a>
       </li>
     </ul>
 
     <!-- SEARCH FORM -->
     <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control form-control-navbar" type="search" placeholder="البحث" aria-label="Search">
         <div class="input-group-append">
           <button class="btn btn-navbar" type="submit">
             <i class="fas fa-search"></i>
@@ -197,8 +197,7 @@
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon far fa-envelope"></i>
-              <p>
+                <i class="fas fa-people-carry"></i>              <p>
                 الأدوار
                 <i class="fas fa-angle-left right"></i>
               </p>
@@ -214,6 +213,7 @@
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>إضافة دور</p>
+
                 </a>
               </li>
             </ul>
@@ -221,8 +221,8 @@
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon far fa-envelope"></i>
-              <p>
+                <i class="fas fa-user-check"></i>
+                              <p>
                 الصلاحيات
                 <i class="fas fa-angle-left right"></i>
               </p>
@@ -247,8 +247,8 @@
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon far fa-envelope"></i>
-              <p>
+                <i class="fas fa-users-cog"></i>
+                              <p>
                 المشرف
                 <i class="fas fa-angle-left right"></i>
               </p>
@@ -270,9 +270,8 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon far fa-envelope"></i>
-              <p>
-                المالك
+                <i class="fas fa-user-tie"></i>              <p>
+                التاجر
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -280,24 +279,23 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>عرض الملاك</p>
+                  <p>عرض التجار</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>إضافة ملاك</p>
+                  <p>إضافة تاجر</p>
                 </a>
               </li>
 
             </ul>
 
-          <li class="nav-header">إدارة المتاجر</li>
+          <li class="nav-header">محتوى النظام</li>
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon far fa-envelope"></i>
-              <p>
+                <i class="fas fa-store"></i>              <p>
                 المتجر
                 <i class="fas fa-angle-left right"></i>
               </p>
@@ -317,72 +315,136 @@
               </li>
             </ul>
           </li>
-          <li class="nav-header">محتوى النظام</li>
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon far fa-envelope"></i>
-              <p>
-                المدينة
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>عرض المدينة</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>إضافة مدينة</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-envelope"></i>
-              <p>
-                الخدمة
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>عرض الخدمات</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>إضافة خدمة</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon far fa-envelope"></i>
-              <p>
-
+                <i class="fas fa-th-large"></i>                <p>
                 التصنيف
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-
               <li class="nav-item">
-
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>عرض التصنيفات</p>
+                  <p>عرض التصنيفات </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>إضافة تصنيف</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="fas fa-th"></i>                                  <p>
+                التصنيف الفرعي
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>عرض التصنيفات الفرعية  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>إضافة تصنيف فرعي</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="fas fa-tshirt"></i>                           <p>
+                المنتج
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>عرض المنتجات </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>إضافة منتج</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-header"> ادارة حسابات المتجر</li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="fas fa-money-bill-alt"></i>                                              <p>
+                رصيد المتجر
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>عرض المتاجر </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>إضافة متجر</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="fas fa-th-large"></i>                <p>
+                المبيعات
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>عرض التصنيفات </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>إضافة تصنيف</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+                <i class="fas fa-th-large"></i>                <p>
+                المشتريات
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>عرض التصنيفات </p>
                 </a>
               </li>
               <li class="nav-item">
@@ -425,15 +487,15 @@
 
   <!-- Content Wrapper. Contains page content -->
 
-
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
+    <strong> {{ now()->year }} - {{ now()->year + 1 }} &copy; <a href="http://adminlte.io"> جميع الحقوق
+            محفوظة {{ env('APP_NAME') }} </a>.</strong>
+
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.0-rc.1
+        <b>Version</b> 1.0.0
     </div>
-  </footer>
+</footer>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
