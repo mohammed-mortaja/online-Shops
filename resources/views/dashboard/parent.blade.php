@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>MY-Store | @yield('title')</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -30,6 +30,10 @@
   <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
   <!-- Custom style for RTL -->
   <link rel="stylesheet" href="{{ asset('dashboard/dist/css/custom.css') }}">
+  <link rel="stylesheet" href="{{ asset('dashboard/plugins/toastr/toastr.min.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+  @yield("styles")
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -42,7 +46,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">الرئيسية</a>
+        <a href="{{ route('parent') }}" class="nav-link">الرئيسية</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">التواصل</a>
@@ -295,6 +299,30 @@
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
+                <i class="fas fa-city"></i>                            <p>
+                المدينة
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('cities.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>عرض المدن </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('cities.create') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>إضافة مدينة</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
                 <i class="fas fa-store"></i>              <p>
                 المتجر
                 <i class="fas fa-angle-left right"></i>
@@ -384,6 +412,7 @@
               </li>
             </ul>
           </li>
+
 
           <li class="nav-header"> ادارة حسابات المتجر</li>
 
@@ -485,17 +514,40 @@
       <!-- /.sidebar-menu -->
   </aside>
 
-  <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0 text-dark">@yield('main-title')</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-12" >
+            <ol class="breadcrumb float-sm-left">
+                <li class="breadcrumb-item"><a href="{{ route('parent') }}">الرئيسية</a></li>
+                <li class="breadcrumb-item active">@yield('sub-title')</li>
+            </ol>
+        </div><!-- /.col -->
 
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+ @yield('content')
+    <!-- /.content -->
+  </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong> {{ now()->year }} - {{ now()->year + 1 }} &copy; <a href="http://adminlte.io"> جميع الحقوق
-            محفوظة {{ env('APP_NAME') }} </a>.</strong>
+    <strong>  {{now()->year}} - {{now()->year+1}}  &copy; <a href="http://adminlte.io"> جميع الحقوق محفوظة {{ env('APP_NAME')}} </a>.</strong>
 
     <div class="float-right d-none d-sm-inline-block">
-        <b>Version</b> 1.0.0
+      <b>Version</b> 1.0.0
     </div>
-</footer>
+  </footer>
+
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -541,5 +593,13 @@
 <script src="{{ asset('dashboard/dist/js/pages/dashboard.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dashboard/dist/js/demo.js') }}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="{{asset('dashboard/plugins/toastr/toastr.min.js')}}"></script>
+
+<script src="{{asset('dashboard/crudjs/crud.js')}}"></script>
+
+@yield("js")
 </body>
 </html>

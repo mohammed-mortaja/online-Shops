@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CityController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/parent' , function (){
-    return view('parent');
+// Route::get('/' , function (){
+//     return view('parent');
+// });
+Route::prefix('dashboard/admin/')->group(function(){
+    Route::view('parent' ,'dashboard.parent')->name('parent');
+    Route::view('test-temp' ,'dashboard.parent');
+    Route::resource('cities' , CityController::class);
+
 });
+
