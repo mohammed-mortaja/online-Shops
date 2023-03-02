@@ -47,8 +47,9 @@
                           تعديل
                           </a>
 
-                        <a href="#" class="btn btn-danger" title="Delete">
-                          حذف
+                          <a href="#" onclick="performDestroy({{ $city->id }},this)"
+                            class="btn btn-danger" title="Delete">
+                            حذف
                         </a>
                       </div>
                     </td>
@@ -56,13 +57,15 @@
                   @endforeach
                 </tbody>
               </table>
+              <br>
+
               <div class="span text-center" style="margin-top: 20px; margin-bottom:10px">
 
               </span>
 
             </div>
             <!-- /.card-body -->
-            {{-- {{$cities->links()}} --}}
+            {{$cities->links()}}
           </div>
           <!-- /.card -->
         </div>
@@ -73,5 +76,10 @@
 @endsection
 
 @section('script')
-
+<script>
+    function performDestroy(id, referance) {
+        let url = '/dashboard/admin/cities/' + id;
+        confirmDestroy(url, referance);
+    }
+</script>
 @endsection

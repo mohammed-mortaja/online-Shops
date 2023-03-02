@@ -167,7 +167,7 @@
     <a href="index3.html" class="brand-link">
       <img src="{{ asset('dashboard/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">تسوق عبر الإنترنت    </span>
     </a>
 
     <!-- Sidebar -->
@@ -178,7 +178,7 @@
           <img src="{{ asset('dashboard/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">محمد مرتجى </a>
         </div>
       </div>
 
@@ -259,13 +259,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('admins.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>عرض المشرفين</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('admins.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>إضافة مشرف</p>
                 </a>
@@ -600,6 +600,6 @@
 
 <script src="{{asset('dashboard/crudjs/crud.js')}}"></script>
 
-@yield("js")
+@yield("script")
 </body>
 </html>

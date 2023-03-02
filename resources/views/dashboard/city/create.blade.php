@@ -38,9 +38,8 @@
 
                             <!-- /.card-body -->
                             <div class="card-footer">
-                                <button type="button"
-                                    class="btn btn-lg btn-success">حفظ</button>
-
+                                <button type="button" onclick="performStore()"
+                                        class="btn btn-lg btn-success">حفظ</button>
                                     <a href="{{ route('cities.index') }}" type="submit"
                                     class="btn btn-lg btn-secondary">إلغاء</a>
                             </div>
@@ -56,5 +55,12 @@
 @endsection
 
 @section('script')
+<script>
+    function performStore() {
+        let formData = new FormData();
+        formData.append('name', document.getElementById('name').value);
+        store('/dashboard/admin/cities', formData);
 
+    }
+</script>
 @endsection

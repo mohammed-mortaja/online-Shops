@@ -40,8 +40,9 @@
 
                             <!-- /.card-body -->
                             <div class="card-footer">
-                                <button type="button" 
+                                <button type="button" onclick="performUpdate({{$cities->id}})"
                                     class="btn btn-lg btn-success">تعديل</button>
+
 
                                     <a href="{{route('cities.index')}}" type="submit"
                                     class="btn btn-lg btn-secondary">إلغاء</a>
@@ -58,5 +59,11 @@
 @endsection
 
 @section('script')
-
+<script>
+    function performUpdate(id){
+        let formData = new FormData();
+        formData.append('name',document.getElementById('name').value);
+        storeRoute('/dashboard/admin/cities_update/'+id , formData);
+    }
+    </script>
 @endsection
