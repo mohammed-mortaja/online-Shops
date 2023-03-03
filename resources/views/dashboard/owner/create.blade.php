@@ -1,7 +1,6 @@
-
 @extends('dashboard.parent')
 
-@section('title', 'المشرف')
+@section('title', 'المالك')
 
 
 
@@ -33,13 +32,13 @@
                                     <div class="form-group col-md-6">
                                         <label for="first_name">الاسم الأول </label>
                                         <input type="text" name="first_name" class="form-control" id="first_name"
-                                            placeholder=" أدخل اسم المشرف الأول ">
+                                            placeholder=" أدخل اسم المالك الأول ">
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="last_name">الاسم الأخير </label>
                                         <input type="text" name="last_name" class="form-control" id="last_name"
-                                            placeholder="أدخل اسم المشرف الأخير ">
+                                            placeholder="أدخل اسم المالك الأخير ">
                                     </div>
                                 </div>
 
@@ -48,7 +47,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="email"> الايميل </label>
                                         <input type="email" name="email" class="form-control" id="email"
-                                            placeholder="أدخل ايميل المشرف  ">
+                                            placeholder="أدخل ايميل المالك  ">
                                     </div>
 
                                     <div class="form-group col-md-6">
@@ -64,13 +63,13 @@
                                     <div class="form-group col-md-6">
                                         <label for="mobile"> رقم الجوال </label>
                                         <input type="text" name="mobile" class="form-control" id="mobile"
-                                            placeholder="أدخل رقم المشرف  ">
+                                            placeholder="أدخل رقم المالك  ">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="gender"> الجنس</label>
                                         <select class="form-control" name="gender" style="width: 100%;" id="gender"
                                             aria-label=".form-select-sm example">
-                                            {{-- <option selected> {{ $admins->user->job_title }} </option> --}}
+                                            {{-- <option selected> {{ $owners->user->job_title }} </option> --}}
                                             <option value="male"> ذكر </option>
                                             <option value="female">أنثى</option>
                                         </select>
@@ -86,8 +85,9 @@
                                     <div class="form-group col-md-6">
                                         <label for="adress"> العنوان </label>
                                         <input type="text" name="address" class="form-control" id="address"
-                                            placeholder="أدخل عنوان المشرف  ">
+                                            placeholder="أدخل عنوان المالك  ">
                                     </div>
+
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6">
@@ -110,6 +110,27 @@
                                         </select>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label for="payment_required"> المبلغ المطلوب </label>
+                                        <input type="text" name="payment_required" class="form-control" id="payment_required"
+                                            placeholder="ادخل الدفعة المطلوبة من التاجر">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="payment_paid"> المبلغ المدفوع  </label>
+                                        <input type="text" name="payment_paid" class="form-control" id="payment_paid"
+                                            placeholder="أدخل ماتم دفعه من التاجر   ">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="payment_not_paid"> المبلغ المتبقي </label>
+                                        <input type="text" name="payment_not_paid" class="form-control" id="payment_not_paid"
+                                            placeholder="أدخل المتبقي دفعه من التاجر   ">
+                                    </div>
+
+                                </div>
+
+
+
 
 
                                 <!-- /.card-body -->
@@ -117,7 +138,7 @@
                                     <button type="button" onclick="performStore()"
                                         class="btn btn-lg btn-success">حفظ</button>
 
-                                    <a href="{{ route('admins.index') }}" type="submit"
+                                    <a href="{{ route('owners.index') }}" type="submit"
                                         class="btn btn-lg btn-secondary">إلغاء</a>
                                 </div>
                             </div>
@@ -141,9 +162,9 @@
     <script>
 
 
-$('.city_id').select2({
-      theme: 'bootstrap4'
-    });
+// $('.city_id').select2({
+//       theme: 'bootstrap4'
+//     });
 
 
         function performStore() {
@@ -156,10 +177,13 @@ $('.city_id').select2({
             formData.append('password', document.getElementById('password').value);
             formData.append('gender', document.getElementById('gender').value);
             formData.append('address', document.getElementById('address').value);
+            formData.append('payment_required', document.getElementById('payment_required').value);
+            formData.append('payment_paid', document.getElementById('payment_paid').value);
+            formData.append('payment_not_paid', document.getElementById('payment_not_paid').value);
             formData.append('image', document.getElementById('image').files[0]);
             formData.append('city_id',document.getElementById('city_id').value);
 
-            store('/dashboard/admin/admins', formData);
+            store('/dashboard/admin/owners', formData);
         }
     </script>
 @endsection

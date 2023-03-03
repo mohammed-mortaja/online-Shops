@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\OwnerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,9 @@ Route::prefix('dashboard/admin/')->group(function(){
 
     Route::resource('admins', AdminController::class);
     Route::post('admins_update/{id}', [AdminController::class, 'update'])->name('admins_update');
+
+    Route::resource('owners', OwnerController::class);
+    Route::post('owners_update/{id}', [OwnerController::class, 'update'])->name('owners_update');
 
 
 
