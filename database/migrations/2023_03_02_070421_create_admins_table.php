@@ -22,7 +22,7 @@ class CreateAdminsTable extends Migration
             $table->string('image')->nullable();
             $table->string('address')->nullable();
             $table->enum('gender', ['male', 'female']);
-            $table->foreignId('city_id')->default(1);
+            $table->foreignId('city_id');
             $table->foreign('city_id')->on('cities')->references('id');
             $table->timestamps();
         });

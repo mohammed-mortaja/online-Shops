@@ -51,8 +51,8 @@
                                              <td>{{ $owner->id }}</td>
                                             <td>
                                                 <img class="img-circle img-bordered-sm"
-                                                    src="{{ asset('storage/images/owner/' . $owner->image) }}"
-                                                    width="50" height="50" alt="User Image">
+                                                src="{{ $owner->image ? asset('storage/images/owner/' . $owner->image) : asset('storage/images/owner/default-image.png') }}"
+                                                width="50" height="50" alt="User Image">
                                             </td>
                                             <td>{{ $owner ? $owner->name : '' }}</td>
                                             <td>{{ $owner->email }}</td>

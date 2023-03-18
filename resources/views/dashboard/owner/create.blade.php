@@ -69,7 +69,7 @@
                                         <label for="gender"> الجنس</label>
                                         <select class="form-control" name="gender" style="width: 100%;" id="gender"
                                             aria-label=".form-select-sm example">
-                                            {{-- <option selected> {{ $owners->user->job_title }} </option> --}}
+                                            {{-- <option selected> {{ $owners->job_title }} </option> --}}
                                             <option value="male"> ذكر </option>
                                             <option value="female">أنثى</option>
                                         </select>

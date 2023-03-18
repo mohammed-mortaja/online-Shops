@@ -162,13 +162,18 @@ class OwnerController extends Controller
     {
         $owners = Owner::findOrFail($id);
 
-        if ($owners->image) {
+        if ($owners->image && file_exists(public_path('storage/images/owner/'.$owners->image))) {
             unlink(public_path('storage/images/owner/'.$owners->image));
         }
-        $deleteAdmin = Owner::destroy($id);
-        return response()->json(['icon' => 'success', 'title' => 'تم الحذف  بنجاح'], $owners ? 200 : 400);
-    }
 
+        $deleted = Owner::destroy($id);
+
+        if($deleted) {
+            return response()->json(['icon' => 'success', 'title' => 'تم الحذف  بنجاح'], 200);
+        } else {
+            return response()->json(['icon' => 'error', 'title' => 'حدث خطأ ما أثناء الحذف'], 400);
+        }
+    }
 
 
 

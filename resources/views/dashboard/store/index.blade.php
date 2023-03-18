@@ -34,6 +34,7 @@
                                     <tr class="bg-info">
                                         <th>رقم المتجر</th>
                                         <th>شعار المتجر </th>
+                                        <th>غلاف المتجر </th>
                                         <th>اسم المتجر </th>
                                         {{-- <th>الادوار </th> --}}
                                         <th> رقم التواصل</th>
@@ -47,9 +48,14 @@
                                     @foreach ($stores as $store)
                                         <tr>
                                              <td>{{ $store->id }}</td>
-                                            <td>
-                                                <img class="img-circle img-bordered-sm"
+                                             <td>
+                                                <img class="img-circle img-bordered-sm "
                                                     src="{{ asset('storage/images/store/' . $store->logo_image) }}"
+                                                    width="50" height="50" alt="User Image">
+                                            </td>
+                                            <td>
+                                                <img style="height: 50px; width: fit-content" class=" img-bordered-sm"
+                                                    src="{{ asset('storage/images/store/' . $store->cover_image) }}"
                                                     width="50" height="50" alt="User Image">
                                             </td>
                                             <td>{{ $store->name }}</td>

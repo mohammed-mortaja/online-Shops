@@ -40,12 +40,12 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = validator($request->all() , [
+        $validator = validator($request->all(), [
             'name' => 'required|max:15|min:3',
-            'phone_number' => 'required' ,
+            'phone_number' => 'required',
             // 'image'=>"required|image|max:2048|mimes:png,jpg,jpeg,pdf",
 
-        ] ,[
+        ], [
             'name' => 'الاسم  مطلوب',
         ]);
         if (!$validator->fails()) {
@@ -57,35 +57,50 @@ class StoreController extends Controller
             $stores->status = $request->get('status');
             $stores->city_id = $request->get('city_id');
 
-            if (request()->hasFile('logo_image')) {
-
-                $image = $request->file('logo_image');
-
-                $imageName = time() . 'logo_image.' . $image->getClientOriginalExtension();
-
-                $image->move('storage/images/store', $imageName);
-
-                $stores->logo_image = $imageName;
+            function uploadImage($request, $fieldName, $storagePath, $prefix = '')
+            {
+                if ($request->hasFile($fieldName)) {
+                    $image = $request->file($fieldName);
+                    $imageName = time() . $prefix . '.' . $image->getClientOriginalExtension();
+                    $image->move($storagePath, $imageName);
+                    return $imageName;
+                }
+                return null;
             }
-            // if (request()->hasFile('image')) {
+
+            $stores->logo_image = uploadImage($request, 'logo_image', 'storage/images/store', 'logo_image');
+            $stores->cover_image = uploadImage($request, 'cover_image', 'storage/images/Store', 'cover_image');
+
+
+            // if (request()->hasFile('logo_image')) {
+
+            //     $image = $request->file('logo_image');
+
+            //     $imageName = time() . 'logo_image.' . $image->getClientOriginalExtension();
+
+            //     $image->move('storage/images/store', $imageName);
+
+            //     $stores->logo_image = $imageName;
+            // }
+
+            // if (request()->hasFile('cover_image')) {
 
             //     $image = $request->file('cover_image');
 
-            //     $imageName = time() . 'image.' . $image->getClientOriginalExtension();
+            //     $imageName = time() . 'cover_image.' . $image->getClientOriginalExtension();
 
             //     $image->move('storage/images/Store', $imageName);
 
             //     $stores->cover_image = $imageName;
             // }
+
             $isSaved = $stores->save();
             if ($isSaved) {
 
                 return response()->json(['icon' => 'success', 'title' => 'تمت الإضافة بنجاح'], 200);
-
             } else {
                 return response()->json(['icon' => 'error', 'title' => 'فشلت عملية الاضافة '], 400);
             }
-
         } else {
             return response()->json(['icon' => 'error', 'title' => $validator->getMessageBag()->first()], 400);
         }
@@ -118,6 +133,8 @@ class StoreController extends Controller
 
         // تمرير البيانات إلى واجهة التعديل
         return view('dashboard.store.edit', ['stores' => $stores, 'cities' => $cities]);
+        // return view('dashboard.store.edit', compact('stores' , 'cities'));
+
     }
 
 
@@ -131,59 +148,56 @@ class StoreController extends Controller
     public function update(Request $request, $id)
     {
 
-            $validator = validator($request->all() , [
-                'name' => 'required|max:15|min:3',
-                'phone_number' => 'required' ,
-                // 'image'=>"required|image|max:2048|mimes:png,jpg,jpeg,pdf",
+        $validator = validator($request->all(), [
+            'name' => 'required|max:15|min:3',
+            'phone_number' => 'required',
+            // 'image'=>"required|image|max:2048|mimes:png,jpg,jpeg,pdf",
 
-            ] ,[
-                'name' => 'الاسم  مطلوب',
-            ]);
-            if (!$validator->fails()) {
-                $stores = Store::findOrFail($id);
-                $stores->name = $request->get('name');
-                $stores->phone_number = $request->get('phone_number');
-                $stores->description = $request->get('description');
-                $stores->address = $request->get('address');
-                $stores->status = $request->get('status');
-                $stores->city_id = $request->get('city_id');
+        ], [
+            'name' => 'الاسم  مطلوب',
+        ]);
+        if (!$validator->fails()) {
+            $stores = Store::findOrFail($id);
+            $stores->name = $request->get('name');
+            $stores->phone_number = $request->get('phone_number');
+            $stores->description = $request->get('description');
+            $stores->address = $request->get('address');
+            $stores->status = $request->get('status');
+            $stores->city_id = $request->get('city_id');
 
-                if (request()->hasFile('logo_image')) {
+            if (request()->hasFile('logo_image')) {
 
-                    $image = $request->file('logo_image');
+                $image = $request->file('logo_image');
 
-                    $imageName = time() . 'logo_image.' . $image->getClientOriginalExtension();
+                $imageName = time() . 'logo_image.' . $image->getClientOriginalExtension();
 
-                    $image->move('storage/images/store', $imageName);
+                $image->move('storage/images/store', $imageName);
 
-                    $stores->logo_image = $imageName;
-                }
-                // if (request()->hasFile('image')) {
-
-                //     $image = $request->file('cover_image');
-
-                //     $imageName = time() . 'image.' . $image->getClientOriginalExtension();
-
-                //     $image->move('storage/images/Store', $imageName);
-
-                //     $stores->cover_image = $imageName;
-                // }
-                $isUpdate = $stores->save();
-                return ['redirect' => route('stores.index')];
-
-                if ($isUpdate) {
-
-
-                    return response()->json(['icon' => 'success', 'title' => 'تمت الإضافة بنجاح'], 200);
-
-                } else {
-                    return response()->json(['icon' => 'error', 'title' => 'فشلت عملية الاضافة '], 400);
-                }
-
-            } else {
-                return response()->json(['icon' => 'error', 'title' => $validator->getMessageBag()->first()], 400);
+                $stores->logo_image = $imageName;
             }
+            // if (request()->hasFile('image')) {
 
+            //     $image = $request->file('cover_image');
+
+            //     $imageName = time() . 'image.' . $image->getClientOriginalExtension();
+
+            //     $image->move('storage/images/Store', $imageName);
+
+            //     $stores->cover_image = $imageName;
+            // }
+            $isUpdate = $stores->save();
+            return ['redirect' => route('stores.index')];
+
+            if ($isUpdate) {
+
+
+                return response()->json(['icon' => 'success', 'title' => 'تمت الإضافة بنجاح'], 200);
+            } else {
+                return response()->json(['icon' => 'error', 'title' => 'فشلت عملية الاضافة '], 400);
+            }
+        } else {
+            return response()->json(['icon' => 'error', 'title' => $validator->getMessageBag()->first()], 400);
+        }
     }
 
     /**
@@ -195,10 +209,20 @@ class StoreController extends Controller
     public function destroy($id)
     {
         $stores = Store::findOrFail($id);
-        if ($stores->logo_image) {
-            unlink(public_path('storage/images/store/'.$stores->logo_image));
+
+        if ($stores->logo_image && file_exists(public_path('storage/images/store/' . $stores->logo_image))) {
+            unlink(public_path('storage/images/store/' . $stores->logo_image));
         }
-        $deleteStore = Store::destroy($id);
-        return response()->json(['icon' => 'success', 'title' => 'تم الحذف  بنجاح'], $stores ? 200 : 400);
+        if ($stores->cover_image && file_exists(public_path('storage/images/store/' . $stores->cover_image))) {
+            unlink(public_path('storage/images/store/' . $stores->cover_image));
+        }
+
+        $deleted = Store::destroy($id);
+
+        if ($deleted) {
+            return response()->json(['icon' => 'success', 'title' => 'تم الحذف  بنجاح'], 200);
+        } else {
+            return response()->json(['icon' => 'error', 'title' => 'حدث خطأ ما أثناء الحذف'], 400);
+        }
     }
 }
