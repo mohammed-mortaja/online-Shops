@@ -329,18 +329,18 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>عرض المتاجر </p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>إضافة متجر</p>
-                </a>
-              </li>
+                <li class="nav-item">
+                    <a href="{{ route('stores.index') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>عرض المتاجر </p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('stores.create') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>إضافة متجر</p>
+                    </a>
+                  </li>
             </ul>
           </li>
 
@@ -520,15 +520,16 @@
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">@yield('main-title')</h1>
-          </div><!-- /.col -->
+
           <div class="col-sm-12" >
             <ol class="breadcrumb float-sm-left">
                 <li class="breadcrumb-item"><a href="{{ route('parent') }}">الرئيسية</a></li>
                 <li class="breadcrumb-item active">@yield('sub-title')</li>
             </ol>
         </div><!-- /.col -->
+        <div class="col-sm-6">
+            <h1 class="m-0 text-dark">@yield('main-title')</h1>
+          </div><!-- /.col -->
 
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->

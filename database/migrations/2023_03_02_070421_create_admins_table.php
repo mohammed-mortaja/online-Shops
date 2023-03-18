@@ -17,6 +17,13 @@ class CreateAdminsTable extends Migration
             $table->id();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('name');
+            $table->string('mobile');
+            $table->string('image')->nullable();
+            $table->string('address')->nullable();
+            $table->enum('gender', ['male', 'female']);
+            $table->foreignId('city_id')->default(1);
+            $table->foreign('city_id')->on('cities')->references('id');
             $table->timestamps();
         });
     }

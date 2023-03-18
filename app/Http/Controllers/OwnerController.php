@@ -55,35 +55,24 @@ class OwnerController extends Controller
         if (!$validator->fails()) {
             $owners = new Owner();
             $owners->email = $request->get('email');
-            $owners->payment_required = $request->get('payment_required');
-            $owners->payment_paid = $request->get('payment_paid');
-            $owners->payment_not_paid = $request->get('payment_not_paid');
             $owners->password = Hash::make($request->get('password'));
+            $owners->name = $request->get('first_name') . " " . $request->get('last_name');
+            $owners->mobile = $request->get('mobile');
+            $owners->gender = $request->get('gender');
+            $owners->address = $request->get('address');
+            $owners->city_id = $request->get('city_id');
+            if (request()->hasFile('image')) {
+
+                $image = $request->file('image');
+
+                $imageName = time() . 'image.' . $image->getClientOriginalExtension();
+
+                $image->move('storage/images/owner', $imageName);
+
+                $owners->image = $imageName;
+            }
             $isSaved = $owners->save();
             if ($isSaved) {
-                $users = new User();
-
-                if (request()->hasFile('image')) {
-
-                    $image = $request->file('image');
-
-                    $imageName = time() . 'image.' . $image->getClientOriginalExtension();
-
-                    $image->move('storage/images/Owner', $imageName);
-
-                    $users->image = $imageName;
-                }
-                // $roles = Role::findOrFail($request->get('role_id'));
-                // $owners->assignRole($roles);
-                $users->name = $request->get('first_name') . " " . $request->get('last_name');
-                $users->mobile = $request->get('mobile');
-                $users->gender = $request->get('gender');
-                $users->address = $request->get('address');
-                $users->city_id = $request->get('city_id');
-
-
-                $users->actor()->associate($owners);
-                $isSaved = $users->save();
 
                 return response()->json(['icon' => 'success', 'title' => 'تمت الإضافة بنجاح'], 200);
 
@@ -145,18 +134,13 @@ class OwnerController extends Controller
         if (!$validator->fails()) {
             $owners = Owner::findOrFail($id);
             $owners->email = $request->get('email');
-            $isSaved = $owners->save();
-            if ($isSaved) {
-                $users = $owners->user;
-                $users->name = $request->get('name');
-                $users->mobile = $request->get('mobile');
-                $users->gender = $request->get('gender');
-                $users->address = $request->get('address');
-                $users->actor()->associate($owners);
-                $isUpdated = $users->save();
-                if ($isUpdated) {
-                    return ['redirect' => route('owners.index')];
-                }
+            $owners->name = $request->get('name');
+            $owners->mobile = $request->get('mobile');
+            $owners->gender = $request->get('gender');
+            $owners->address = $request->get('address');
+            $isUpdated = $owners->save();
+            if ($isUpdated) {
+                return ['redirect' => route('owners.index')];
                 return response()->json(['icon' => 'success', 'title' => 'تمت الإضافة بنجاح'], 200);
 
             } else {
@@ -177,9 +161,15 @@ class OwnerController extends Controller
     public function destroy($id)
     {
         $owners = Owner::findOrFail($id);
-        $users = $owners->user;
-        $deleteUser = User::destroy($users->id);
-        $deleteOwner = Owner::destroy($id);
-        return response()->json(['icon' => 'success', 'title' => 'Deleted is Successfully'], $owners ? 200 : 400);
+
+        if ($owners->image) {
+            unlink(public_path('storage/images/owner/'.$owners->image));
+        }
+        $deleteAdmin = Owner::destroy($id);
+        return response()->json(['icon' => 'success', 'title' => 'تم الحذف  بنجاح'], $owners ? 200 : 400);
     }
+
+
+
+
 }

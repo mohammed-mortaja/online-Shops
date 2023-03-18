@@ -15,14 +15,14 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('mobile');
-            $table->string('image')->nullable();
-            $table->string('address')->nullable();
-            $table->enum('gender', ['male', 'female']);
-            $table->foreignId('city_id');
-            $table->foreign('city_id')->on('cities')->references('id');
-            $table->morphs('actor');
+            // $table->string('name');
+            // $table->string('mobile');
+            // $table->string('image')->nullable();
+            // $table->string('address')->nullable();
+            // $table->enum('gender', ['male', 'female']);
+            // $table->foreignId('city_id');
+            // $table->foreign('city_id')->on('cities')->references('id');
+            // $table->morphs('actor');
             $table->timestamps();
         });
     }

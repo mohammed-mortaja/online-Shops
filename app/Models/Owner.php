@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class Owner extends Model
+class Owner extends Authenticatable
 {
     use HasFactory;
     public function city()
@@ -13,8 +14,8 @@ class Owner extends Model
         return $this->belongsTo(City::class, 'city_id', 'id');
     }
 
-    public function user()
-    {
-        return $this->morphOne(User::class, 'actor', 'actor_type', 'actor_id', 'id');
-    }
+    // public function user()
+    // {
+    //     return $this->morphOne(User::class, 'actor', 'actor_type', 'actor_id', 'id');
+    // }
 }

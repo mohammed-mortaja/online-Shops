@@ -8,8 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class City extends Model
 {
     use HasFactory;
-    public function users()
+    public function admins()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Admin::class);
+    }
+    public function owners()
+    {
+        return $this->hasMany(Owner::class);
+    }
+    public function stores(){
+        return $this->hasMany(Store::class);
     }
 }

@@ -32,12 +32,12 @@
                                     <div class="form-group col-md-6">
                                         <label for="name">الاسم </label>
                                         <input type="text" name="name" class="form-control" id="name"
-                                            placeholder=" أدخل اسم المالك  " value="{{ $owners->user->name }}">
+                                            placeholder=" أدخل اسم المالك  " value="{{ $owners->name }}">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="adress"> العنوان </label>
                                         <input type="text" name="address" class="form-control" id="address"
-                                            placeholder="أدخل عنوان المالك  " value="{{ $owners->user->address }}">
+                                            placeholder="أدخل عنوان المالك  " value="{{ $owners->address }}">
                                     </div>
                                 </div>
 
@@ -50,7 +50,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="mobile"> رقم الجوال </label>
                                         <input type="text" name="mobile" class="form-control" id="mobile"
-                                            placeholder="أدخل ايميل المالك  " value="{{ $owners->user->mobile }}">
+                                            placeholder="أدخل ايميل المالك  " value="{{ $owners->mobile }}">
                                     </div>
                                 </div>
 
@@ -62,16 +62,16 @@
                                         <select class="form-control" name="gender" style="width: 100%;" id="gender"
                                             aria-label=".form-select-sm example">
                                             <option selected
-                                                value="{{ $owners->user->gender == 'male' ? 'male' : 'female' }}">
-                                                {{ $owners->user->gender == 'male' ? 'ذكر' : 'انثى' }} </option>
-                                            <option value="{{ $owners->user->gender == 'male' ? 'female' : 'male' }}">
-                                                {{ $owners->user->gender == 'male' ? 'انثى' : 'ذكر' }}
+                                                value="{{ $owners->gender == 'male' ? 'male' : 'female' }}">
+                                                {{ $owners->gender == 'male' ? 'ذكر' : 'انثى' }} </option>
+                                            <option value="{{ $owners->gender == 'male' ? 'female' : 'male' }}">
+                                                {{ $owners->gender == 'male' ? 'انثى' : 'ذكر' }}
                                             </option>
                                         </select>
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="form-group col-md-4">
                                         <label for="payment_required"> المبلغ المطلوب </label>
                                         <input type="text" name="payment_required" class="form-control" id="payment_required"
@@ -87,7 +87,7 @@
                                         <input type="text" name="payment_not_Paid" class="form-control" id="payment_not_Paid"
                                             placeholder="أدخل المتبقي دفعه من التاجر "  value="{{ $owners->payment_not_Paid}}">
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="row">
                                     <!-- /.card-body -->
@@ -129,9 +129,9 @@ $('.city_id').select2({
             formData.append('email', document.getElementById('email').value);
             formData.append('gender', document.getElementById('gender').value);
             formData.append('address', document.getElementById('address').value);
-            formData.append('payment_required', document.getElementById('payment_required').value);
-            formData.append('payment_paid', document.getElementById('payment_paid').value);
-            formData.append('payment_not_Paid', document.getElementById('payment_not_Paid').value);
+            // formData.append('payment_required', document.getElementById('payment_required').value);
+            // formData.append('payment_paid', document.getElementById('payment_paid').value);
+            // formData.append('payment_not_Paid', document.getElementById('payment_not_Paid').value);
             storeRoute('/dashboard/admin/owners_update/' + id, formData);
 
         }

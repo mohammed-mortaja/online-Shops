@@ -17,8 +17,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-
-        $admins = Admin::orderBy('id', 'desc')->paginate(5);
+        $admins = Admin::orderBy('id', 'asc')->orderBy('id', 'asc')->paginate(5);
+        // $admins = Admin::orderBy('id', 'desc')->paginate(5);
         return response()->view('dashboard.admin.index', compact('admins'));
     }
 
@@ -56,31 +56,20 @@ class AdminController extends Controller
             $admins = new Admin();
             $admins->email = $request->get('email');
             $admins->password = Hash::make($request->get('password'));
+            $admins->name = $request->get('first_name') . " " . $request->get('last_name');
+            $admins->mobile = $request->get('mobile');
+            $admins->gender = $request->get('gender');
+            $admins->address = $request->get('address');
+            $admins->city_id = $request->get('city_id');
+            if (request()->hasFile('image')) {
+                // إذا تم تحميل صورة، قم بحفظها كالمعتاد
+                $image = $request->file('image');
+                $imageName = time() . 'image.' . $image->getClientOriginalExtension();
+                $image->move('storage/images/admin', $imageName);
+                $admins->image = $imageName;
+            }
             $isSaved = $admins->save();
             if ($isSaved) {
-                $users = new User();
-
-                if (request()->hasFile('image')) {
-
-                    $image = $request->file('image');
-
-                    $imageName = time() . 'image.' . $image->getClientOriginalExtension();
-
-                    $image->move('storage/images/admin', $imageName);
-
-                    $users->image = $imageName;
-                }
-                // $roles = Role::findOrFail($request->get('role_id'));
-                // $admins->assignRole($roles);
-                $users->name = $request->get('first_name') . " " . $request->get('last_name');
-                $users->mobile = $request->get('mobile');
-                $users->gender = $request->get('gender');
-                $users->address = $request->get('address');
-                $users->city_id = $request->get('city_id');
-
-
-                $users->actor()->associate($admins);
-                $isSaved = $users->save();
 
                 return response()->json(['icon' => 'success', 'title' => 'تمت الإضافة بنجاح'], 200);
 
@@ -142,18 +131,13 @@ class AdminController extends Controller
         if (!$validator->fails()) {
             $admins = Admin::findOrFail($id);
             $admins->email = $request->get('email');
-            $isSaved = $admins->save();
-            if ($isSaved) {
-                $users = $admins->user;
-                $users->name = $request->get('name');
-                $users->mobile = $request->get('mobile');
-                $users->gender = $request->get('gender');
-                $users->address = $request->get('address');
-                $users->actor()->associate($admins);
-                $isUpdated = $users->save();
-                if ($isUpdated) {
-                    return ['redirect' => route('admins.index')];
-                }
+            $admins->name = $request->get('name');
+            $admins->mobile = $request->get('mobile');
+            $admins->gender = $request->get('gender');
+            $admins->address = $request->get('address');
+            $isUpdated = $admins->save();
+            if ($isUpdated) {
+                return ['redirect' => route('admins.index')];
                 return response()->json(['icon' => 'success', 'title' => 'تمت الإضافة بنجاح'], 200);
 
             } else {
@@ -172,11 +156,22 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        $admins = Admin::findOrFail($id);
-        $users = $admins->user;
-        $deleteUser = User::destroy($users->id);
-        $deleteAdmin = Admin::destroy($id);
-        return response()->json(['icon' => 'success', 'title' => 'Deleted is Successfully'], $admins ? 200 : 400);
+{
+    $admins = Admin::findOrFail($id);
+
+    if ($admins->image && file_exists(public_path('storage/images/admin/'.$admins->image))) {
+        unlink(public_path('storage/images/admin/'.$admins->image));
     }
+
+    $deleted = Admin::destroy($id);
+
+    if($deleted) {
+        return response()->json(['icon' => 'success', 'title' => 'تم الحذف  بنجاح'], 200);
+    } else {
+        return response()->json(['icon' => 'error', 'title' => 'حدث خطأ ما أثناء الحذف'], 400);
+    }
+}
+
+
+
 }

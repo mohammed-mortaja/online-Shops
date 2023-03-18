@@ -22,7 +22,7 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title float-left">انشاء المالك</h3>
+                            <h3 class="card-title float-left">انشاء مشرف</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->

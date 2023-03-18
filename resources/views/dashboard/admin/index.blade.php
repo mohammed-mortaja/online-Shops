@@ -46,21 +46,22 @@
                                     @foreach ($admins as $admin)
                                         <tr>
                                              <td>{{ $admin->id }}</td>
-                                            <td>
+                                             <td>
                                                 <img class="img-circle img-bordered-sm"
-                                                    src="{{ asset('storage/images/admin/' . $admin->user->image) }}"
-                                                    width="50" height="50" alt="User Image">
+                                                     src="{{ $admin->image ? asset('storage/images/admin/' . $admin->image) : asset('storage/images/admin/default-image.png') }}"
+                                                     width="50" height="50" alt="User Image">
                                             </td>
-                                            <td>{{ $admin->user ? $admin->user->name : '' }}</td>
+
+                                            <td>{{ $admin ? $admin->name : '' }}</td>
                                             <td>{{ $admin->email }}</td>
                                             {{-- <td>
                                                 @foreach ($admin->getRoleNames() as $role)
                                                     <span class="badge badge-danger"> {{ $role }} </span>
                                                 @endforeach
                                             </td> --}}
-                                            <td>{{ $admin->user ? $admin->user->mobile : '' }}</td>
-                                            <td>{{ $admin->user->gender == 'male' ? 'ذكر' : 'انثى' }}</td>
-                                            {{-- <td>{{ $admin->user? $admin->user->gender : '' }}</td> --}}
+                                            <td>{{ $admin ? $admin->mobile : '' }}</td>
+                                            <td>{{ $admin->gender == 'male' ? 'ذكر' : 'انثى' }}</td>
+                                            {{-- <td>{{ $admin ? $admin->gender : '' }}</td> --}}
                                                 <td>
                                                     <div class="btn group">
                                                             <a href="{{ route('admins.edit', $admin->id) }}" class="btn btn-primary"

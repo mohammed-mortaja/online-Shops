@@ -73,7 +73,7 @@
                                             <option value="male"> ذكر </option>
                                             <option value="female">أنثى</option>
                                         </select>
-                                    </div>
+                                </div>
                                 </div>
 
                                 <div class="row">
@@ -110,7 +110,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="form-group col-md-4">
                                         <label for="payment_required"> المبلغ المطلوب </label>
                                         <input type="text" name="payment_required" class="form-control" id="payment_required"
@@ -127,7 +127,7 @@
                                             placeholder="أدخل المتبقي دفعه من التاجر   ">
                                     </div>
 
-                                </div>
+                                </div> --}}
 
 
 
@@ -177,9 +177,9 @@
             formData.append('password', document.getElementById('password').value);
             formData.append('gender', document.getElementById('gender').value);
             formData.append('address', document.getElementById('address').value);
-            formData.append('payment_required', document.getElementById('payment_required').value);
-            formData.append('payment_paid', document.getElementById('payment_paid').value);
-            formData.append('payment_not_paid', document.getElementById('payment_not_paid').value);
+            // formData.append('payment_required', document.getElementById('payment_required').value);
+            // formData.append('payment_paid', document.getElementById('payment_paid').value);
+            // formData.append('payment_not_paid', document.getElementById('payment_not_paid').value);
             formData.append('image', document.getElementById('image').files[0]);
             formData.append('city_id',document.getElementById('city_id').value);
 

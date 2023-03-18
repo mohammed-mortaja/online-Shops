@@ -32,12 +32,12 @@
                                     <div class="form-group col-md-6">
                                         <label for="name">الاسم </label>
                                         <input type="text" name="name" class="form-control" id="name"
-                                            placeholder=" أدخل اسم المشرف  " value="{{ $admins->user->name }}">
+                                            placeholder=" أدخل اسم المشرف  " value="{{ $admins->name }}">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="adress"> العنوان </label>
                                         <input type="text" name="address" class="form-control" id="address"
-                                            placeholder="أدخل عنوان المشرف  " value="{{ $admins->user->address }}">
+                                            placeholder="أدخل عنوان المشرف  " value="{{ $admins->address }}">
                                     </div>
                                 </div>
 
@@ -50,7 +50,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="mobile"> رقم الجوال </label>
                                         <input type="text" name="mobile" class="form-control" id="mobile"
-                                            placeholder="أدخل ايميل المشرف  " value="{{ $admins->user->mobile }}">
+                                            placeholder="أدخل ايميل المشرف  " value="{{ $admins->mobile }}">
                                     </div>
                                 </div>
 
@@ -62,10 +62,10 @@
                                         <select class="form-control" name="gender" style="width: 100%;" id="gender"
                                             aria-label=".form-select-sm example">
                                             <option selected
-                                                value="{{ $admins->user->gender == 'male' ? 'male' : 'female' }}">
-                                                {{ $admins->user->gender == 'male' ? 'ذكر' : 'انثى' }} </option>
-                                            <option value="{{ $admins->user->gender == 'male' ? 'female' : 'male' }}">
-                                                {{ $admins->user->gender == 'male' ? 'انثى' : 'ذكر' }}
+                                                value="{{ $admins->gender == 'male' ? 'male' : 'female' }}">
+                                                {{ $admins->gender == 'male' ? 'ذكر' : 'انثى' }} </option>
+                                            <option value="{{ $admins->gender == 'male' ? 'female' : 'male' }}">
+                                                {{ $admins->gender == 'male' ? 'انثى' : 'ذكر' }}
                                             </option>
                                         </select>
                                     </div>

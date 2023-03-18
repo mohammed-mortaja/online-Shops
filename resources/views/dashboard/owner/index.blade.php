@@ -39,9 +39,9 @@
                                         {{-- <th>الادوار </th> --}}
                                         <th> رقم الجوال</th>
                                         <th> الجنس </th>
-                                        <th> المبلغ المطلوب </th>
+                                        {{-- <th> المبلغ المطلوب </th>
                                         <th> المبلغ المدفوع </th>
-                                        <th> المبلغ المتبقي </th>
+                                        <th> المبلغ المتبقي </th> --}}
                                         <th>الاعدادات</th>
                                     </tr>
                                 </thead>
@@ -51,16 +51,16 @@
                                              <td>{{ $owner->id }}</td>
                                             <td>
                                                 <img class="img-circle img-bordered-sm"
-                                                    src="{{ asset('storage/images/owner/' . $owner->user->image) }}"
+                                                    src="{{ asset('storage/images/owner/' . $owner->image) }}"
                                                     width="50" height="50" alt="User Image">
                                             </td>
-                                            <td>{{ $owner->user ? $owner->user->name : '' }}</td>
+                                            <td>{{ $owner ? $owner->name : '' }}</td>
                                             <td>{{ $owner->email }}</td>
-                                            <td>{{ $owner->user ? $owner->user->mobile : '' }}</td>
-                                            <td>{{ $owner->user->gender == 'male' ? 'ذكر' : 'انثى' }}</td>
-                                            <td>{{ $owner->payment_required }}</td>
+                                            <td>{{ $owner ? $owner->mobile : '' }}</td>
+                                            <td>{{ $owner->gender == 'male' ? 'ذكر' : 'انثى' }}</td>
+                                            {{-- <td>{{ $owner->payment_required }}</td>
                                             <td>{{ $owner->payment_paid }}</td>
-                                            <td>{{ $owner->payment_not_Paid }}</td>
+                                            <td>{{ $owner->payment_not_Paid }}</td> --}}
                                             {{-- <td>
                                                 @foreach ($owner->getRoleNames() as $role)
                                                     <span class="badge badge-danger"> {{ $role }} </span>
