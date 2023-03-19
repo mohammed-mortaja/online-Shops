@@ -15,13 +15,15 @@ class OwnerFactory extends Factory
      */
     public function definition()
     {
+        $faker = \Faker\Factory::create('ar_SA');
+
         return [
-            'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'name' =>$faker->name,
+            'email' =>$faker->unique()->safeEmail,
             'password' => Hash::make('password'),
             'image' => 'default-image.png',
-            'mobile' => $this->faker->phoneNumber(),
-            'address' => $this->faker->address(),
+            'mobile' =>$faker->phoneNumber(),
+            'address' =>$faker->address(),
             'city_id' => City::inRandomOrder()->first()->id,
         ];
 

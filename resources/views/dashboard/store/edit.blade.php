@@ -45,23 +45,28 @@
 
 
                                 <div class="row">
-
                                     <div class="form-group col-md-6">
-                                        <label for="logo_image"> شعار المتجر </label>
-                                        <input type="file" name="logo_image" class="form-control" id="logo_image"
-                                            placeholder="أدخل صورة شعار المتجر  ">
+                                        <label for="logo_image">شعار المتجر</label>
+                                        <input type="file" name="logo_image" class="form-control" id="logo_image" placeholder="أدخل صورة شعار المتجر" data-preview="#logo_image_preview" onchange="previewImage(event)">
+                                        <img src="{{ asset('storage/images/store/' . $stores->logo_image) }}" id="logo_image_preview" alt="شعار المتجر" height="60">
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="cover_image"> غلاف المتجر </label>
-                                        <input type="file" name="cover_image" class="form-control" id="cover_image"
-                                            placeholder="أدخل صورة غلاف المتجر  ">
-                                            {{-- @if ($store->image)
-                                            <img src="{{ asset('storage/' . $stores->image) }}" alt="" height="60">
-                                            @endif --}}
+                                        <label for="cover_image">غلاف المتجر</label>
+                                        <input type="file" name="cover_image" class="form-control" id="cover_image" placeholder="أدخل صورة غلاف المتجر" data-preview="#cover_image_preview" onchange="previewImage(event)">
+                                        @if ($stores->cover_image)
+                                            <img src="{{ asset('storage/images/store/' . $stores->cover_image) }}" id="cover_image_preview" alt="غلاف المتجر" height="60">
+                                        @endif
                                     </div>
-
                                 </div>
+
+                                <script>
+                                    function previewImage(event) {
+                                        var previewImage = event.target.getAttribute('data-preview');
+                                        var image = document.querySelector(previewImage);
+                                        image.src = URL.createObjectURL(event.target.files[0]);
+                                    }
+                                </script>
 
 
                                 <div class="row">

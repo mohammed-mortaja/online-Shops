@@ -166,25 +166,34 @@ class StoreController extends Controller
             $stores->city_id = $request->get('city_id');
 
             if (request()->hasFile('logo_image')) {
+                // Delete the previous image
+                if (file_exists(public_path('storage/images/Store/' . $stores->logo_image))) {
+                    unlink(public_path('storage/images/Store/' . $stores->logo_image));
+                }
 
                 $image = $request->file('logo_image');
-
                 $imageName = time() . 'logo_image.' . $image->getClientOriginalExtension();
 
-                $image->move('storage/images/store', $imageName);
+                $image->move('storage/images/Store', $imageName);
 
                 $stores->logo_image = $imageName;
             }
-            // if (request()->hasFile('image')) {
 
-            //     $image = $request->file('cover_image');
+            if (request()->hasFile('cover_image')) {
+                // Delete the previous image
+                if (file_exists(public_path('storage/images/Store/' . $stores->cover_image))) {
+                    unlink(public_path('storage/images/Store/' . $stores->cover_image));
+                }
 
-            //     $imageName = time() . 'image.' . $image->getClientOriginalExtension();
+                $image = $request->file('cover_image');
+                $imageName = time() . 'cover_image.' . $image->getClientOriginalExtension();
 
-            //     $image->move('storage/images/Store', $imageName);
+                $image->move('storage/images/Store', $imageName);
 
-            //     $stores->cover_image = $imageName;
-            // }
+                $stores->cover_image = $imageName;
+            }
+
+
             $isUpdate = $stores->save();
             return ['redirect' => route('stores.index')];
 

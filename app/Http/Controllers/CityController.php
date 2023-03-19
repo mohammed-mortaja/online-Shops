@@ -37,27 +37,29 @@ class CityController extends Controller
     public function store(Request $request)
     {
         $validator = validator($request->all(), [
-            'name' => 'required|string|min:3|max:20',
+            'name' => 'required|string|min:3|max:20|unique:cities,name',
         ], [
             'name.required' => 'الإسم مطلوب',
             'name.min' => 'لا يقبل أقل من 3 حروف',
             'name.max' => 'لا يقبل أكثر من 20 حروف',
+            'name.unique' => 'موجود مسبقا',
         ]);
+
         if (!$validator->fails()) {
+            $cities = new City();
+            $cities->name = $request->get('name');
+            $isSaved = $cities->save();
 
-        $cities = new City();
-        $cities->name = $request->get('name');
-        $isSaved = $cities->save();
-
-        if ($isSaved) {
-            return response()->json(['icon' => 'success', 'title' => "تمت الإضافة بنجاح"], 200);
+            if ($isSaved) {
+                return response()->json(['icon' => 'success', 'title' => "تمت الإضافة بنجاح"], 200);
+            } else {
+                return response()->json(['icon' => 'error', 'title' => "فشلت عملية التخزين"], 400);
+            }
         } else {
-            return response()->json(['icon' => 'error', 'title' => "فشلت عملية التخزين"], 400);
-        }
-    } else {
             return response()->json(['icon' => 'error', 'title' => $validator->getMessageBag()->first()], 400);
         }
     }
+
     /**
      * Display the specified resource.
      *
@@ -90,13 +92,13 @@ class CityController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $validator = validator($request->all(), [
-            'name' => 'required|string|min:3|max:20',
+            'name' => 'required|string|min:3|max:20|unique:cities,name',
         ], [
             'name.required' => 'الإسم مطلوب',
             'name.min' => 'لا يقبل أقل من 3 حروف',
             'name.max' => 'لا يقبل أكثر من 20 حروف',
+            'name.unique' => 'موجود مسبقا',
         ]);
 
         if (!$validator->fails()) {
