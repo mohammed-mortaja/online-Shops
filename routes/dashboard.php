@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\StoreController;
@@ -27,6 +28,9 @@ Route::prefix('dashboard/admin/')->group(function () {
 
     Route::resource('stores', StoreController::class);
     Route::post('stores_update/{id}', [StoreController::class, 'update'])->name('stores_update');
+
+    Route::resource('categories' , CategoryController::class);
+    Route::post('categories_update/{id}', [CategoryController::class, 'update'])->name('categories_update');
 
 });
 

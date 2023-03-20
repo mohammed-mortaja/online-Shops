@@ -12,6 +12,9 @@ class Store extends Model
     {
         return $this->belongsTo(City::class, 'city_id', 'id');
     }
+    public function categories(){
+        return $this->hasMany(Category::class);
+    }
 
 
 }
