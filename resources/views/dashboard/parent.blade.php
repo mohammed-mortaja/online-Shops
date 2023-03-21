@@ -376,13 +376,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('sub_categories.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>عرض التصنيفات الفرعية  </p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('sub_categories.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>إضافة تصنيف فرعي</p>
                 </a>
