@@ -2,9 +2,9 @@
 
 @section('title', 'المدينة')
 
-@section('main-title', 'المدينة')
+{{-- @section('main-title', 'المدينة') --}}
 
-@section('sub-title', 'تعديل المدينة')
+@section('sub-title', 'تعديل مدينة')
 
 @section('styles')
 
@@ -18,7 +18,7 @@
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">تعديل مدينة</h3>
+                        <h3 class="card-title float-left">تعديل المدينة</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->

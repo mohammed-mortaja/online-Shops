@@ -1,6 +1,6 @@
 
 @extends('dashboard.parent')
-
+@section('sub-title' , 'انشاء مشرف')
 @section('title', 'المشرف')
 
 

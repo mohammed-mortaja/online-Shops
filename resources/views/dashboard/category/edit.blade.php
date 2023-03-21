@@ -1,4 +1,5 @@
 @extends('dashboard.parent')
+@section('sub-title' , 'تعديل تصنيف ')
 
 @section('title', 'التصنيف')
 
@@ -34,7 +35,7 @@
                                     <input type="text" name="name" class="form-control" id="name"
                                         placeholder=" أدخل اسم التصنيف  " value="{{$categories->name}}">
                                 </div>
-                                
+
 
                             </div>
 
@@ -46,7 +47,7 @@
                                     <img class="img-circle img-bordered-sm " src="{{ asset('storage/images/category/' . $categories->image) }}" id="image_preview" alt="شعار التصنيف" width="70" height="70">
                                 </div>
 
-                               
+
                             </div>
 
                             <script>
@@ -58,8 +59,8 @@
                             </script>
 
 
-                           
-                               
+
+
 
                                 <div class="form-group col-md-6">
                                     <label for="store_id">اسم المتجر</label>
@@ -73,7 +74,7 @@
 
 
 
-                        
+
 
 
                             {{-- <div class="row"> --}}
@@ -94,7 +95,7 @@
         <!-- /.row -->
     </div><!-- /.container-fluid -->
 </section>
-   
+
 
 @endsection
 
@@ -105,17 +106,17 @@
     $('.store_id').select2({
           theme: 'bootstrap4'
         });
-    
+
             function performUpdate(id) {
                 let formData = new FormData();
-                formData.append('name', document.getElementById('name').value);                    
-                formData.append('image', document.getElementById('image').files[0]); 
+                formData.append('name', document.getElementById('name').value);
+                formData.append('image', document.getElementById('image').files[0]);
                 formData.append('store_id', document.getElementById('store_id').value);
 
                 storeRoute('/dashboard/admin/categories_update/' + id, formData);
-    
+
             }
         </script>
-   
+
 @endsection
 

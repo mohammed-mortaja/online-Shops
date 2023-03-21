@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard;
+use App\Http\Controllers\Controller;
 
-use App\Models\Admin;
+use App\Models\Owner;
 use App\Models\City;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class AdminController extends Controller
+class OwnerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +18,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admins = Admin::orderBy('id', 'asc')->orderBy('id', 'asc')->paginate(5);
-        // $admins = Admin::orderBy('id', 'desc')->paginate(5);
-        return response()->view('dashboard.admin.index', compact('admins'));
+
+        $owners = Owner::orderBy('id', 'desc')->paginate(5);
+        return response()->view('dashboard.owner.index', compact('owners'));
     }
 
     /**
@@ -30,7 +31,7 @@ class AdminController extends Controller
     public function create()
     {
         $cities = City::all();
-        return response()->view('dashboard.admin.create', compact('cities'));
+        return response()->view('dashboard.owner.create', compact('cities'));
     }
 
     /**
@@ -45,7 +46,7 @@ class AdminController extends Controller
             'first_name' => 'required|max:15|min:3',
             'last_name' => 'required|max:15|min:3' ,
             'mobile' => 'required' ,
-            'email' => 'required|email|unique:admins,email',
+            'email' => 'required|email|unique:owners,email',
             // 'image'=>"required|image|max:2048|mimes:png,jpg,jpeg,pdf",
 
         ] ,[
@@ -53,22 +54,25 @@ class AdminController extends Controller
             'last_name' => 'الاسم الثاني مطلوب',
         ]);
         if (!$validator->fails()) {
-            $admins = new Admin();
-            $admins->email = $request->get('email');
-            $admins->password = Hash::make($request->get('password'));
-            $admins->name = $request->get('first_name') . " " . $request->get('last_name');
-            $admins->mobile = $request->get('mobile');
-            $admins->gender = $request->get('gender');
-            $admins->address = $request->get('address');
-            $admins->city_id = $request->get('city_id');
+            $owners = new Owner();
+            $owners->email = $request->get('email');
+            $owners->password = Hash::make($request->get('password'));
+            $owners->name = $request->get('first_name') . " " . $request->get('last_name');
+            $owners->mobile = $request->get('mobile');
+            $owners->gender = $request->get('gender');
+            $owners->address = $request->get('address');
+            $owners->city_id = $request->get('city_id');
             if (request()->hasFile('image')) {
-                // إذا تم تحميل صورة، قم بحفظها كالمعتاد
+
                 $image = $request->file('image');
+
                 $imageName = time() . 'image.' . $image->getClientOriginalExtension();
-                $image->move('storage/images/admin', $imageName);
-                $admins->image = $imageName;
+
+                $image->move('storage/images/owner', $imageName);
+
+                $owners->image = $imageName;
             }
-            $isSaved = $admins->save();
+            $isSaved = $owners->save();
             if ($isSaved) {
 
                 return response()->json(['icon' => 'success', 'title' => 'تمت الإضافة بنجاح'], 200);
@@ -101,9 +105,9 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $admins = Admin::findOrFail($id);
+        $owners = Owner::findOrFail($id);
 
-        return response()->view('dashboard.admin.edit', compact('admins'));
+        return response()->view('dashboard.owner.edit', compact('owners'));
     }
 
     /**
@@ -129,15 +133,15 @@ class AdminController extends Controller
         ]);
 
         if (!$validator->fails()) {
-            $admins = Admin::findOrFail($id);
-            $admins->email = $request->get('email');
-            $admins->name = $request->get('name');
-            $admins->mobile = $request->get('mobile');
-            $admins->gender = $request->get('gender');
-            $admins->address = $request->get('address');
-            $isUpdated = $admins->save();
+            $owners = Owner::findOrFail($id);
+            $owners->email = $request->get('email');
+            $owners->name = $request->get('name');
+            $owners->mobile = $request->get('mobile');
+            $owners->gender = $request->get('gender');
+            $owners->address = $request->get('address');
+            $isUpdated = $owners->save();
             if ($isUpdated) {
-                return ['redirect' => route('admins.index')];
+                return ['redirect' => route('owners.index')];
                 return response()->json(['icon' => 'success', 'title' => 'تمت الإضافة بنجاح'], 200);
 
             } else {
@@ -156,21 +160,21 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-{
-    $admins = Admin::findOrFail($id);
+    {
+        $owners = Owner::findOrFail($id);
 
-    if ($admins->image && file_exists(public_path('storage/images/admin/'.$admins->image))) {
-        unlink(public_path('storage/images/admin/'.$admins->image));
+        if ($owners->image && file_exists(public_path('storage/images/owner/'.$owners->image))) {
+            unlink(public_path('storage/images/owner/'.$owners->image));
+        }
+
+        $deleted = Owner::destroy($id);
+
+        if($deleted) {
+            return response()->json(['icon' => 'success', 'title' => 'تم الحذف  بنجاح'], 200);
+        } else {
+            return response()->json(['icon' => 'error', 'title' => 'حدث خطأ ما أثناء الحذف'], 400);
+        }
     }
-
-    $deleted = Admin::destroy($id);
-
-    if($deleted) {
-        return response()->json(['icon' => 'success', 'title' => 'تم الحذف  بنجاح'], 200);
-    } else {
-        return response()->json(['icon' => 'error', 'title' => 'حدث خطأ ما أثناء الحذف'], 400);
-    }
-}
 
 
 

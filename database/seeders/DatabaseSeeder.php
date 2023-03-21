@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,7 +15,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         \App\Models\City::factory(5)->create();
-        \App\Models\Admin::factory(3)->create();
+        $this->call(AdminSeeder::class);
+        \App\Models\Admin::factory(1)->create();
         \App\Models\Owner::factory(3)->create();
+
     }
 }

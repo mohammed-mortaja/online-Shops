@@ -1,7 +1,7 @@
 @extends('dashboard.parent')
 @section('title', 'التصنيف الفرعي' )
 
-@section('main-title', 'عرض التصنيف الفرعي ')
+{{-- @section('main-title', 'عرض التصنيف الفرعي ') --}}
 @section('sub-title', 'عرض التصنيف الفرعي')
 
 @section('styles')
@@ -20,7 +20,7 @@
                         <div class="card-header">
                             {{-- <h3 class="card-title">المتجر</h3> --}}
                             <a href="{{ route('sub_categories.create') }}" type="submit" class="btn btn-lg btn-success">إضافة تصنيف
-                                الفرعي جديد</a>
+                                فرعي جديد</a>
                             <div class="card-tools">
 
                             </div>
@@ -34,7 +34,7 @@
                                     <tr class="bg-info">
                                         <th>رقم  التصنيف الفرعي</th>
                                         <th>غلاف  التصنيف الفرعي </th>
-                                        <th>اسم  التصنيف الفرعي </th>                                      
+                                        <th>اسم  التصنيف الفرعي </th>
                                         <th> اسم  التصنيف الاساسي </th>
                                         <th>الاعدادات</th>
                                     </tr>
@@ -50,12 +50,12 @@
                                                     width="50" height="50" alt="User Image">
 
 
-                                                    
+
                                             </td>
-                                            
-                                            <td>{{ $sub_category->name }}</td>                           
+
+                                            <td>{{ $sub_category->name }}</td>
                                             <td>{{ $sub_category->category ? $sub_category->category->name:"non value"}}</td>
-                                            
+
                                                 <td>
                                                     <div class="btn group">
                                                             <a href="{{ route('sub_categories.edit', $sub_category->id) }}" class="btn btn-primary"
@@ -96,7 +96,7 @@
         function performDestroy(id, referance) {
             let url = '/dashboard/admin/sub_categories/' + id;
             confirmDestroy(url, referance);
-            
+
         }
     </script>
 

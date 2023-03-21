@@ -2,9 +2,9 @@
 
 @section('title', 'المدينة')
 
-@section('main-title', ' المدينة')
+{{-- @section('main-title', ' المدينة') --}}
 
-@section('sub-title', 'عرض المدينة')
+@section('sub-title', ' المدينة')
 
 @section('styles')
 

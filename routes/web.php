@@ -1,9 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CityController;
-use App\Http\Controllers\OwnerController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +18,4 @@ use App\Http\Controllers\OwnerController;
 // });
 
 
-require __DIR__.'/auth.php';
 require __DIR__.'/dashboard.php';

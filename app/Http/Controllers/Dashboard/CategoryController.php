@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard;
+use App\Http\Controllers\Controller;
 
 use App\Models\Category;
-use App\Models\SubCategory;
+use App\Models\Store;
 use Illuminate\Http\Request;
 
-class SubCategoryController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +16,12 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        
+        $stores = Store::all();
+
         //$categories = Category::orderBy('id', 'desc')->paginate(5);
-        $sub_categories = SubCategory::with('category')->orderBy('id', 'desc')->paginate(5);
-        
-        return response()->view('dashboard.sub_category.index', compact('sub_categories'));
+        $categories = Category::with('store')->orderBy('id', 'desc')->paginate(5);
+
+        return response()->view('dashboard.category.index', compact('categories'));
     }
 
     /**
@@ -30,8 +31,8 @@ class SubCategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return response()->view('dashboard.sub_category.create', compact('categories'));
+        $stores = Store::all();
+        return response()->view('dashboard.category.create', compact('stores'));
     }
 
     /**
@@ -44,29 +45,29 @@ class SubCategoryController extends Controller
     {
         $validator = validator($request->all(), [
             'name' => 'required|max:15|min:3',
-           
+
             // 'image'=>"required|image|max:2048|mimes:png,jpg,jpeg,pdf",
 
         ], [
             'name' => 'الاسم  مطلوب',
         ]);
         if (!$validator->fails()) {
-            $sub_categories = new SubCategory();
-            $sub_categories->name = $request->get('name');   
-            $sub_categories->category_id = $request->get('category_id');
+            $categories = new Category();
+            $categories->name = $request->get('name');
+            $categories->store_id = $request->get('store_id');
 
-            if(request()->hasFile('image')){ 
+            if(request()->hasFile('image')){
 
                 $image = $request->file('image');
                 $imageName = time().'image.'. $image->getClientOriginalExtension();
-                $image->move('storage/images/sub_category',$imageName);
-                $sub_categories->image = $imageName;
+                $image->move('storage/images/category',$imageName);
+                $categories->image = $imageName;
                 }
 
-            
-           
 
-            $isSaved = $sub_categories->save();
+
+
+            $isSaved = $categories->save();
             if ($isSaved) {
 
                 return response()->json(['icon' => 'success', 'title' => 'تمت الإضافة بنجاح'], 200);
@@ -81,10 +82,10 @@ class SubCategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\SubCategory  $subCategory
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(SubCategory $subCategory)
+    public function show(Category $category)
     {
         //
     }
@@ -92,71 +93,71 @@ class SubCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\SubCategory  $subCategory
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        // الحصول على التصنيف الفرعي  المطلوب بناءً على ال ID المعطى
-        $sub_categories = SubCategory::findOrFail($id);
+        // الحصول على التصنيف المطلوب بناءً على ال ID المعطى
+        $categories = Category::findOrFail($id);
 
-        // استرداد قائمة التصنيف من قاعدة البيانات
-        $categories = Category::all();
+        // استرداد قائمة المتاجر من قاعدة البيانات
+        $stores = Store::all();
 
         // تمرير البيانات إلى واجهة التعديل
-        
-         return view('dashboard.sub_category.edit', compact('sub_categories' , 'categories'));
+        //return view('dashboard.category.edit', ['categories' => $categories, 'stores' => $stores]);
+         return view('dashboard.category.edit', compact('categories' , 'stores'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\SubCategory  $subCategory
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-       
+
         $validator = validator($request->all(), [
-            'name' => 'required|max:29|min:3',
-           
+            'name' => 'required|max:15|min:3',
+
             // 'image'=>"required|image|max:2048|mimes:png,jpg,jpeg,pdf",
 
         ], [
             'name' => 'الاسم  مطلوب',
         ]);
         if (!$validator->fails()) {
-            $sub_categories = SubCategory::findOrFail($id);
-            $sub_categories->name = $request->get('name');
-            $sub_categories->category_id = $request->get('category_id');
+            $categories = Category::findOrFail($id);
+            $categories->name = $request->get('name');
+            $categories->store_id = $request->get('store_id');
 
             if (request()->hasFile('image')) {
                 // Delete the previous image
-                if (file_exists(public_path('storage/images/sub_category/' . $sub_categories->image))) {
-                   // unlink(public_path('storage/images/sub_category/' . $sub_categories->image));
+                if (file_exists(public_path('storage/images/category/' . $categories->image))) {
+                    unlink(public_path('storage/images/category/' . $categories->image));
                 }
 
                 $image = $request->file('image');
                 $imageName = time() . 'image.' . $image->getClientOriginalExtension();
 
-                $image->move('storage/images/sub_category', $imageName);
+                $image->move('storage/images/category', $imageName);
 
-                $sub_categories->image = $imageName;
+                $categories->image = $imageName;
             }
 
-            
 
 
-            $isUpdate = $sub_categories->save();
-            return ['redirect' => route('sub_categories.index')];
+
+            $isUpdate = $categories->save();
+            return ['redirect' => route('categories.index')];
 
             if ($isUpdate) {
 
 
-                return response()->json(['icon' => 'success', 'title' => 'تمت التعديل بنجاح'], 200);
+                return response()->json(['icon' => 'success', 'title' => 'تمت الإضافة بنجاح'], 200);
             } else {
-                return response()->json(['icon' => 'error', 'title' => 'فشلت التعديل الاضافة '], 400);
+                return response()->json(['icon' => 'error', 'title' => 'فشلت عملية الاضافة '], 400);
             }
         } else {
             return response()->json(['icon' => 'error', 'title' => $validator->getMessageBag()->first()], 400);
@@ -166,20 +167,21 @@ class SubCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\SubCategory  $subCategory
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        
-        $sub_categories = SubCategory::findOrFail($id);
 
-        if ($sub_categories->image && file_exists(public_path('storage/images/sub_category/' . $sub_categories->image))) {
-            unlink(public_path('storage/images/sub_category/' . $sub_categories->image));
+        $categories = Category::findOrFail($id);
+        $categories->sub_categories()->Delete();
+
+        if ($categories->image && file_exists(public_path('storage/images/category/' . $categories->image))) {
+            unlink(public_path('storage/images/category/' . $categories->image));
         }
-        
 
-        $deleted = SubCategory::destroy($id);
+
+        $deleted = Category::destroy($id);
 
         if ($deleted) {
             return response()->json(['icon' => 'success', 'title' => 'تم الحذف  بنجاح'], 200);

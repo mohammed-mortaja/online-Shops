@@ -1,4 +1,5 @@
 @extends('dashboard.parent')
+@section('sub-title' ,   ' انشاء تصنيف فرعي')
 
 @section('title', 'التصنيف الفرعي')
 
@@ -35,7 +36,7 @@
                                             placeholder=" أدخل اسم التصنيف الفرعي  ">
                                     </div>
 
-                                   
+
 
 
 
@@ -50,7 +51,7 @@
                                             placeholder="أدخل صورة شعار التصنيف الفرعي  ">
                                     </div>
 
-                                    
+
 
                                 </div>
 
@@ -67,7 +68,7 @@
                                         </select>
                                     </div>
 
-                                    
+
 
 
 
@@ -105,10 +106,10 @@
 
         function performStore() {
             let formData = new FormData();
-            formData.append('name', document.getElementById('name').value);            
-            formData.append('image', document.getElementById('image').files[0]);  
+            formData.append('name', document.getElementById('name').value);
+            formData.append('image', document.getElementById('image').files[0]);
             formData.append('category_id', document.getElementById('category_id').value);
-            
+
 
             store('/dashboard/admin/sub_categories', formData);
         }

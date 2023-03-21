@@ -18,7 +18,7 @@ class AdminFactory extends Factory
         $faker = \Faker\Factory::create('ar_SA');
 
         return [
-            'name' =>$faker->name,
+            'name' =>$faker->name(2),
             'email' =>$faker->unique()->safeEmail,
             'password' => Hash::make('password'),
             'image' => 'default-image.png',

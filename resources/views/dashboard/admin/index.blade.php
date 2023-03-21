@@ -1,7 +1,7 @@
 @extends('dashboard.parent')
 @section('title', 'المشرف')
 
-@section('main-title', 'عرض المشرف')
+{{-- @section('main-title', ' المشرف') --}}
 @section('sub-title', 'عرض المشرف')
 
 @section('styles')

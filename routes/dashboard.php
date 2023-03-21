@@ -1,11 +1,11 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CityController;
-use App\Http\Controllers\OwnerController;
-use App\Http\Controllers\StoreController;
-use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\Dashboard\AdminController;
+use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\CityController;
+use App\Http\Controllers\Dashboard\OwnerController;
+use App\Http\Controllers\Dashboard\StoreController;
+use App\Http\Controllers\Dashboard\SubCategoryController;
 
 Route::get('/', function () {
     return view('dashboard.parent');

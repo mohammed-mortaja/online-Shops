@@ -1,4 +1,5 @@
 @extends('dashboard.parent')
+@section('sub-title', 'تعديل تصنيف فرعي')
 
 @section('title', 'التصنيف الفرعي')
 
@@ -34,7 +35,7 @@
                                     <input type="text" name="name" class="form-control" id="name"
                                         placeholder="  أدخل اسم التصنيف الفرعي  " value="{{$sub_categories->name}}">
                                 </div>
-                                
+
 
                             </div>
 
@@ -46,7 +47,7 @@
                                     <img class="img-circle img-bordered-sm " src="{{ asset('storage/images/sub_category/' . $sub_categories->image) }}" id="image_preview" alt="شعار التصنيف" width="70" height="70">
                                 </div>
 
-                               
+
                             </div>
 
                             <script>
@@ -58,8 +59,8 @@
                             </script>
 
 
-                           
-                               
+
+
 
                                 <div class="form-group col-md-6">
                                     <label for="category_id">اسم التصنيف</label>
@@ -73,7 +74,7 @@
 
 
 
-                        
+
 
 
                             {{-- <div class="row"> --}}
@@ -94,7 +95,7 @@
         <!-- /.row -->
     </div><!-- /.container-fluid -->
 </section>
-   
+
 
 @endsection
 
@@ -105,17 +106,17 @@
     $('.category_id').select2({
           theme: 'bootstrap4'
         });
-    
+
             function performUpdate(id) {
                 let formData = new FormData();
-                formData.append('name', document.getElementById('name').value);                    
-                formData.append('image', document.getElementById('image').files[0]); 
+                formData.append('name', document.getElementById('name').value);
+                formData.append('image', document.getElementById('image').files[0]);
                 formData.append('category_id', document.getElementById('category_id').value);
 
                 storeRoute('/dashboard/admin/sub_categories_update/' + id, formData);
-    
+
             }
         </script>
-   
+
 @endsection
 

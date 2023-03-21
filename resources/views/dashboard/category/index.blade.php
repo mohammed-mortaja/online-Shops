@@ -1,8 +1,8 @@
 @extends('dashboard.parent')
 @section('title', 'التصنيف')
 
-@section('main-title', 'عرض التصنيف')
-@section('sub-title', 'عرض التصنيف')
+{{-- @section('main-title', 'عرض التصنيف') --}}
+@section('sub-title', ' التصنيف')
 
 @section('styles')
     <style>
@@ -34,7 +34,7 @@
                                     <tr class="bg-info">
                                         <th>رقم التصنيف</th>
                                         <th>غلاف التصنيف </th>
-                                        <th>اسم التصنيف </th>                                      
+                                        <th>اسم التصنيف </th>
                                         <th> اسم المتجر </th>
                                         <th>الاعدادات</th>
                                     </tr>
@@ -48,10 +48,10 @@
                                                     src="{{ asset('storage/images/category/' . $category->image) }}"
                                                     width="50" height="50" alt="User Image">
                                             </td>
-                                            
-                                            <td>{{ $category->name }}</td>                           
+
+                                            <td>{{ $category->name }}</td>
                                             <td>{{ $category->store ? $category->store->name:"non value"}}</td>
-                                            
+
                                                 <td>
                                                     <div class="btn group">
                                                             <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary"
@@ -92,7 +92,7 @@
         function performDestroy(id, referance) {
             let url = '/dashboard/admin/categories/' + id;
             confirmDestroy(url, referance);
-            
+
         }
     </script>
 

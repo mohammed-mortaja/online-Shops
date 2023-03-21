@@ -1,4 +1,5 @@
 @extends('dashboard.parent')
+@section('sub-title', 'تعديل متجر')
 
 @section('title', 'لمتجر')
 
