@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\CityController;
 use App\Http\Controllers\Dashboard\OwnerController;
 use App\Http\Controllers\Dashboard\StoreController;
 use App\Http\Controllers\Dashboard\SubCategoryController;
+use App\Http\Controllers\Dashboard\ProductController;
 
 Route::get('/', function () {
     return view('dashboard.parent');
@@ -35,6 +36,9 @@ Route::prefix('dashboard/admin/')->group(function () {
 
     Route::resource('sub_categories' , SubCategoryController::class);
     Route::post('sub_categories_update/{id}', [SubCategoryController::class, 'update'])->name('sub_categories_update');
+
+    Route::resource('products' , ProductController::class);
+    Route::post('products_update/{id}', [ProductController::class, 'update'])->name('products_update');
 
 });
 

@@ -75,7 +75,7 @@
                             </div>
                             <!-- /.card-body -->
                             <br>
-                            {{-- {{ $categorys->links() }} --}}
+                            {{ $categories->links() }}
                         </div>
                         <!-- /.card -->
                     </div>
